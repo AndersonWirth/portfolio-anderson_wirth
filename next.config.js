@@ -5,6 +5,16 @@ const nextConfig = {
   },
   images: {
     domains: ['media.graphassets.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.graphassets.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.licdn.com',
+      },
+    ],
   },
 }
 
