@@ -1,8 +1,8 @@
 import { Button } from "@/app/components/button"
 import Image from "next/image"
 import { HiArrowNarrowRight } from 'react-icons/hi'
-import { TechBadge } from "../../../tech-badge"
 import { TbBrandGithub, TbBrandLinkedin, TbBrandWhatsapp } from "react-icons/tb"
+import { TechBadge } from "../../../header/tech-badge"
 
 
 
@@ -48,9 +48,9 @@ export const HeroSection = () => {
                         <div className="text-2xl text-gray-600 flex items-center h-20 gap-3">
                             {MOCK_CONTACTS.map((contact) => (
                                 <a href={contact.url}
-                                key={'contact-$index{}'}
-                                target="_blank"
-                                className="hover:text-gray-100 transition-colors">
+                                    key={'contact-$index{}'}
+                                    target="_blank"
+                                    className="hover:text-gray-100 transition-colors">
                                     {contact.icon}
                                 </a>
                             ))}
