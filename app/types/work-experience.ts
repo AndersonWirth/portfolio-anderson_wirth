@@ -1,7 +1,7 @@
 import { RichTextContent } from '@graphcms/rich-text-types';
 import { KnownTech } from "./project";
 
-export type WorkExperiense = {
+export type WorkExperience = {
     companyLogo: {
         url: string;
     }

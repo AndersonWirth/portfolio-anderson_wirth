@@ -1,7 +1,9 @@
 'use client'
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { z } from "zod";
 import { Button } from "../button";
@@ -17,12 +19,18 @@ type ContactFormData = z.infer<typeof contactFormSchema>
 
 export const ContactForm = () => {
 
-    const { handleSubmit, register } = useForm({
+    const { handleSubmit, register, reset, formState: { isSubmitting } } = useForm({
         resolver: zodResolver(contactFormSchema)
     })
 
-    const onSubmit = (data: ContactFormData) => {
-        console.log(data)
+    const onSubmit = async (data: ContactFormData) => {
+        try {
+            await axios.post('/api/contact', data)
+            toast.success('Mensagem enviada com sucesso!')
+            reset();
+        } catch {
+            toast.error('Ocorreu um erro ao enviar a mensagem :(, tente novamente ou se preferir me chame pelo Whatsapp no icone da pagina "Home" :)');
+        }
     }
 
     return (
@@ -35,7 +43,6 @@ export const ContactForm = () => {
                 />
 
                 <form className="mt-12 w-full flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-
                     <input
                         {...register('name')}
                         placeholder="None"
@@ -53,7 +60,7 @@ export const ContactForm = () => {
                         maxLength={500}
                     />
 
-                    <Button className="mt-6 w-max mx-auto shadow-button">
+                    <Button className="mt-6 w-max mx-auto shadow-button" disabled={isSubmitting}>
                         Enviar Mensagem
                         <HiArrowNarrowRight size={18} />
                     </Button>

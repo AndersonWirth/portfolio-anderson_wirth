@@ -1,12 +1,12 @@
 import { RichText } from "@/app/components/rich-text"
-import { WorkExperiense } from "@/app/types/work-experience"
+import { WorkExperience } from "@/app/types/work-experience"
 import { differenceInMonths, differenceInYears, format } from "date-fns"
 import ptBR from "date-fns/locale/pt-BR"
 import Image from "next/image"
 import { TechBadge } from "../../../header/tech-badge"
 
 type ExperienceItemProps = {
-    experience: WorkExperiense
+    experience: WorkExperience
 }
 
 export const ExperienceItem = ({ experience }: ExperienceItemProps) => {
