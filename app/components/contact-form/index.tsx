@@ -26,7 +26,7 @@ export const ContactForm = () => {
     }
 
     return (
-        <section className="py-16 px-6 md:py-32 flex items-center justify-center bg-gray-950">
+        <section id="contact" className="py-16 px-6 md:py-32 flex items-center justify-center bg-gray-950">
             <div className="w-full max-w-[420px] mx-auto">
                 <SectionTitle
                     subtitle="contato"
@@ -34,10 +34,7 @@ export const ContactForm = () => {
                     className="items-center text-center"
                 />
 
-                <form
-                    className="mt-12 w-full flex flex-col gap-4"
-                    onSubmit={handleSubmit(onSubmit)}
-                >
+                <form className="mt-12 w-full flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
 
                     <input
                         {...register('name')}
