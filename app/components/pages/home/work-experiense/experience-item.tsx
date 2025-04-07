@@ -1,7 +1,47 @@
+import { RichText } from "@/app/components/rich-text"
+import { WorkExperiense } from "@/app/types/work-experience"
+import { differenceInMonths, differenceInYears, format } from "date-fns"
+import ptBR from "date-fns/locale/pt-BR"
 import Image from "next/image"
 import { TechBadge } from "../../../header/tech-badge"
 
-export const ExperienceItem = () => {
+type ExperienceItemProps = {
+    experience: WorkExperiense
+}
+
+export const ExperienceItem = ({ experience }: ExperienceItemProps) => {
+
+    const {
+        endDate,
+        companyLogo,
+        companyName,
+        companyUrl,
+        description,
+        role,
+        technologies
+    } = experience
+
+    const startDate = new Date(experience.startDate)
+
+    const formattedStartDate = format(startDate, 'MM yyyy', { locale: ptBR })
+
+    const formattedEndDate = endDate ? format(new Date(endDate), 'MM yyyy', { locale: ptBR }) : 'o momento'
+
+    const end = endDate ? new Date(endDate) : new Date()
+
+    const months = differenceInMonths(end, startDate)
+    const years = differenceInYears(end, startDate)
+    const monthsRemaining = months % 12
+
+    const formattedDuration =
+        years > 0
+            ? `${years} ano${years > 1 ? 's' : ''}${monthsRemaining > 0
+                ? ` e ${monthsRemaining} mes${monthsRemaining > 1 ? 'es' : ''}`
+                : ''
+            }`
+            : `${months} mes${months > 1 ? 'es' : ''}`
+
+
 
     return (
         <div className="grid grid-cols-[40px,1fr] gap-4 md:gap-10">
@@ -9,11 +49,11 @@ export const ExperienceItem = () => {
             <div className="flex flex-col items-center gap-4">
                 <div className="rounded-full border border-gray-500 p-0.5">
                     <Image
-                        src="https://media.licdn.com/dms/image/v2/C560BAQGwM1YnM51FuQ/company-logo_200_200/company-logo_200_200/0/1634662525316/crestani_filhos_ltda_vipi_supermercados_logo?e=2147483647&v=beta&t=kbUUHCuank9yRgA4JVkV9etd38quxRCw_sfaugi99Qs"
+                        src={companyLogo.url}
                         width={40}
                         height={40}
                         className="rounded-full"
-                        alt="Logo da empresa Grupo Crestani"
+                        alt={`Logo da empresa ${companyName}`}
                     />
                 </div>
 
@@ -23,25 +63,25 @@ export const ExperienceItem = () => {
             <div>
                 <div className="flex flex-col gap-2 text-sm sm:text-base">
                     <a target="_blank"
-                        href="https://www.linkedin.com/company/crestani-filhos-ltda-vipi-supermercados/?originalSubdomain=br"
+                        href={companyUrl}
                         className="text-gray-500 hover:text-emerald-500 transition-colors">
-                        @ Grupo Crestani
+                        @ {companyName}
                     </a>
-                    <h4 className="text-gray-300">Administrador de TI</h4>
+                    <h4 className="text-gray-300">{role}</h4>
                     <span className="text-gray-500">
-                        Nov 1999 • O momento • (25 Anos)
+                        {formattedStartDate} • {formattedEndDate} • ({formattedDuration})
                     </span>
-                    <p className="text-gray-400">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quam non totam expedita quod ex consequuntur architecto incidunt repellat debitis?
-                    </p>
+                    <div className="text-gray-400">
+                        <RichText content={description.raw} />
+                    </div>
                 </div>
 
                 <p className="text-gray-400 text-sm mb-3 mt-6 font-semibold">Competências</p>
                 <div className="flex gap-x-2 gap-y-3 flex-wrap lg:max-w-[350px] mb-8">
-                    <TechBadge name="Redes" />
-                    <TechBadge name="Redes" />
-                    <TechBadge name="Redes" />
-                    <TechBadge name="Redes" />
+                    {technologies.map(tech => (
+                        <TechBadge key={`experience-${companyName}-tech-${tech.name}`} name={tech.name} />
+                    ))}
+
                 </div>
 
             </div>
