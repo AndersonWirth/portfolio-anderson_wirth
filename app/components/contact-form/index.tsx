@@ -8,6 +8,8 @@ import { HiArrowNarrowRight } from "react-icons/hi";
 import { z } from "zod";
 import { Button } from "../button";
 import { SectionTitle } from "../section-title";
+import { motion } from "framer-motion";
+import { fadeUpAnimation } from "@/app/lib/animation";
 
 const contactFormSchema = z.object({
     name: z.string().min(3).max(100),
@@ -42,7 +44,11 @@ export const ContactForm = () => {
                     className="items-center text-center"
                 />
 
-                <form className="mt-12 w-full flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+                <motion.form
+                    className="mt-12 w-full flex flex-col gap-4"
+                    onSubmit={handleSubmit(onSubmit)}
+                    {...fadeUpAnimation}
+                >
                     <input
                         {...register('name')}
                         placeholder="None"
@@ -64,7 +70,7 @@ export const ContactForm = () => {
                         Enviar Mensagem
                         <HiArrowNarrowRight size={18} />
                     </Button>
-                </form>
+                </motion.form>
             </div>
         </section >
     )
