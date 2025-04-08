@@ -10,10 +10,6 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.graphassets.com',
       },
-      {
-        protocol: 'https',
-        hostname: '**.licdn.com',
-      },
     ],
   },
 }

@@ -1,22 +1,22 @@
-import { IBM_Plex_Mono, Inter } from 'next/font/google'
+import { Inter, IBM_Plex_Mono } from 'next/font/google'
+import './globals.css'
+import { Header } from './components/header'
 import { ReactNode } from 'react'
-import { BackToTop } from './components/back-to-top'
 import { ContactForm } from './components/contact-form'
 import { Footer } from './components/footer'
-import { Header } from './components/header'
 import { Toaster } from './components/toaster'
-import './globals.css'
+import { BackToTop } from './components/back-to-top'
 
 export const metadata = {
   title: {
     default: 'Home',
-    template: '%s | AW Portfolio'
+    template: '%s | Anderson Wirth',
   },
   icons: [
     {
-      url: '/images/logo.svg'
-    }
-  ]
+      url: '/images/logo.svg',
+    },
+  ],
 }
 
 const inter = Inter({
@@ -36,6 +36,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <Toaster />
         <BackToTop />
+
         <Header />
         {children}
         <ContactForm />
