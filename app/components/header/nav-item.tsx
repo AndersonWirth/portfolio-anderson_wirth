@@ -1,6 +1,7 @@
 import { cn } from '@/app/lib/utils'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { IoBugSharp } from 'react-icons/io5'
 
 type NavItemProps = {
   href: string
@@ -20,7 +21,9 @@ export const NavItem = ({ label, href }: NavItemProps) => {
         isActive && 'text-gray-50',
       )}
     >
-      <span className="text-emerald-400">#</span>
+      <span className="text-emerald-400">
+        <IoBugSharp />
+      </span>
       {label}
     </Link>
   )

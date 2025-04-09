@@ -13,6 +13,7 @@ import { fadeUpAnimation } from '@/app/lib/animations'
 
 const contactFormSchema = z.object({
   name: z.string().min(3).max(100),
+  phone: z.string().min(9).max(15),
   email: z.string().email(),
   message: z.string().min(1).max(500),
 })
@@ -59,6 +60,11 @@ export const ContactForm = () => {
             placeholder="Nome"
             className="w-full h-14 bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
             {...register('name')}
+          />
+          <input
+            placeholder="Telefone"
+            className="w-full h-14 bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
+            {...register('phone')}
           />
           <input
             placeholder="E-mail"

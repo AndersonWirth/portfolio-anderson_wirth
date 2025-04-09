@@ -21,9 +21,11 @@ export const PageIntroduction = () => {
         transition={{ duration: 0.6 }}
       >
         <p className="text-gray-400 text-center max-w-[640px] my-6 text-sm sm:text-base">
-          Aqui você poderá ver alguns dos trabalhos que eu desenvolvi. Navegue à
-          vontade e explore os projetos para ver como foram criados, as
-          tecnologias utilizadas e as funcionalidades implementadas.
+          Aqui você poderá conhecer alguns dos trabalhos que desenvolvi ao longo
+          da minha trajetória, incluindo projetos técnicos e experiências
+          profissionais. Navegue à vontade e explore os detalhes de cada
+          iniciativa — desde as tecnologias utilizadas até as soluções
+          implementadas e os resultados alcançados na prática.
         </p>
         <Link href="/">
           <HiArrowNarrowLeft size={20} />
